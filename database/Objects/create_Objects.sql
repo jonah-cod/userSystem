@@ -8,9 +8,9 @@ CREATE TABLE users
     full_name VARCHAR(50),
     addres VARCHAR(50),
     user_role VARCHAR(50),
+    pass VARCHAR(250),
     isDeleted BIT,
-    FK_projectId VARCHAR(250) DEFAULT NULL FOREIGN KEY (id) 
-    REFERENCES projects (projectId)
+    
 )
 
 CREATE TABLE projects
@@ -36,6 +36,7 @@ CREATE TABLE tasks
     startDate DATE,
     endDate DATE,
     task_status VARCHAR(50),
+    FK_projectId VARCHAR(250) NOT NULL FOREIGN KEY REFERENCES projects(projectId),
     assignedTo VARCHAR(250) DEFAULT NULL FOREIGN KEY REFERENCES users (id),
     isComplete BIT DEFAULT 0,
     isDelete BIT DEFAULT 0,
@@ -43,6 +44,16 @@ CREATE TABLE tasks
 )
 
 -- DROP TABLE users;
+-- DROP TABLE projects;
+-- DROP TABLE tasks;
 
+-- INSERT into users (id, full_name, addres, user_role, pass, isDeleted)
+--         VALUES('bhjhbhgs', 'jonathan', 'kieni', 'user', 'jnhjhzfgvjhsdnch', 0);
 
+-- SELECT * 
+--     FROM users
+--     WHERE isDeleted = 0;
+
+-- DELETE from users
+-- WHERE id = 'bhjhbhgs';
 

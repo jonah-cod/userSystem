@@ -1,12 +1,12 @@
 USE usersData;
 GO
 
-CREATE PROCEDURE allinsertupdatedelete (@id            INTEGER,
+CREATE PROCEDURE usersallinsertupdatedelete (@id            INTEGER,
                                           @full_name    VARCHAR(50),
                                           @addres     VARCHAR(50),
                                           @pass        VARCHAR(255),
                                           @user_role    VARCHAR(20) = 'user',
-                                          @isDelete      BIT = 0,
+                                          @isDeleted      BIT = 0,
                                           @StatementType NVARCHAR(20) = '')
 AS
   BEGIN
@@ -18,20 +18,20 @@ AS
                          addres,
                          user_role,
                          pass,
-                         isDelete)
+                         isDeleted)
             VALUES     ( @id,
                          @full_name,
                          @addres,
                          @user_role,
                          @pass,
-                         @isDelete)
+                         @isDeleted)
         END
 
       IF @StatementType = 'Select'
         BEGIN
             SELECT *
             FROM   users
-            WHERE isDElete = 0
+            WHERE isDEleted = 0
         END
 
         IF @StatementType = 'SelectOne'
@@ -51,7 +51,9 @@ AS
       ELSE IF @StatementType = 'Delete'
         BEGIN
             UPDATE users
-             SET   isDelete = 1
+             SET   isDeleted = 1
             WHERE  id = @id
         END
   END
+
+  -- DROP PROCEDURE allinsertupdatedelete;
