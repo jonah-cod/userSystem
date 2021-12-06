@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 require('dotenv').config();
-const jwt = require('jsonwebtoken');
+
 
 module.exports = {
 
@@ -13,10 +13,7 @@ module.exports = {
     verifypass: async(data) => {
         let { pass, enpass } = data;
         return await bcrypt.compare(pass, enpass)
-    },
-
-    genToken: (user) => {
-        let secret = process.env.SECRET_KEY;
-
     }
+
+
 }

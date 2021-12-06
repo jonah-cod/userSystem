@@ -1,10 +1,10 @@
 USE usersData;
 GO
 
-CREATE PROCEDURE usersallinsertupdatedelete (@id            INTEGER,
-                                          @full_name    VARCHAR(50),
-                                          @addres     VARCHAR(50),
-                                          @pass        VARCHAR(255),
+CREATE OR ALTER PROCEDURE usersallinsertupdatedelete (@id            VARCHAR(50),
+                                          @full_name    VARCHAR(50) = '',
+                                          @addres     VARCHAR(50) = '',
+                                          @pass        VARCHAR(255) = '',
                                           @user_role    VARCHAR(20) = 'user',
                                           @isDeleted      BIT = 0,
                                           @StatementType NVARCHAR(20) = '')
@@ -38,7 +38,7 @@ AS
          BEGIN
             SELECT *
             FROM users
-            WHERE id = @id
+            WHERE id = @id AND isDeleted = 0
          END
 
       IF @StatementType = 'Update'
@@ -55,5 +55,7 @@ AS
             WHERE  id = @id
         END
   END
+
+  EXEC usersallinsertupdatedelete @id='jonatskin@gmail.com', @StatementType='SelectOne' ;
 
   -- DROP PROCEDURE allinsertupdatedelete;
