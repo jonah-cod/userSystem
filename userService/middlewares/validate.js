@@ -1,13 +1,15 @@
+const { getMeUser } = require('../helpers/getUser')
+
 module.exports = {
     validate: (req, res, next) => {
         let errors = []
         let { password, Cpassword } = req.body;
         password = password.trim();
         Cpassword = Cpassword.trim();
-        if (password === Cpassword && password !== undefined && password !== "") {
+        if (password === Cpassword && password !== undefined && password !== '') {
 
             if (password.length < 8) {
-                errors.push("passwords should contain more than 8 characters!")
+                errors.push('passwords should contain more than 8 characters!')
             }
 
             if (!/\d/.test(password)) {
@@ -24,7 +26,7 @@ module.exports = {
             }
 
         } else {
-            errors.push("passwords must match and they can't be empty!")
+            errors.push('passwords must match and they can\'t be empty!')
         }
 
         if (errors.length) {
@@ -32,6 +34,11 @@ module.exports = {
         } else(next());
     },
 
-
+    isHeanAdmin: async(req, res, next) => {
+        let id = req.body.id;
+        let user = await getMeUser(id);
+        let role = user.user_role;
+        if (role === 'admin') { next() }
+    }
 
 }
