@@ -1,7 +1,7 @@
 USE usersData;
 GO
 
-CREATE OR ALTER PROCEDURE usersallinsertupdatedelete (@id            VARCHAR(50),
+CREATE OR ALTER PROCEDURE usersallinsertupdatedelete (@id   VARCHAR(50) = '',
                                           @full_name    VARCHAR(50) = '',
                                           @addres     VARCHAR(50) = '',
                                           @pass        VARCHAR(255) = '',
