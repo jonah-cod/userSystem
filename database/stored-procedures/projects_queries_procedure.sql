@@ -1,14 +1,14 @@
 USE usersData;
 GO
 
-CREATE PROCEDURE projectsallinsertupdatedelete (@projectId            INTEGER,
-                                          @title   VARCHAR(50),
-                                          @p_description     VARCHAR(50),
-                                          @startDate DATE,
-                                          @endDate DATE,
+CREATE OR ALTER PROCEDURE projectsallinsertupdatedelete (@projectId   VARCHAR(250) = '',
+                                          @title   VARCHAR(100) = '',
+                                          @p_description     VARCHAR(250) = '',
+                                          @startDate DATE = '',
+                                          @endDate DATE = '',
                                           @isComplete        Bit = 0,
                                           @isDeleted      BIT = 0,
-                                          @StatementType NVARCHAR(20) = '')
+                                          @StatementType VARCHAR(20) = '')
 AS
   BEGIN
       IF @StatementType = 'Insert'
@@ -44,6 +44,14 @@ AS
             WHERE projectId = @projectId
          END
 
+      IF @statementType = 'selectUnassigned'
+        BEGIN
+          SELECT *
+            FROM projects t1
+            LEFT JOIN assignedProjects t2 ON t2.projectId = t1.projectId
+            WHERE t2.projectId IS NULL
+        END
+
       IF @StatementType = 'Update'
         BEGIN
             UPDATE projects
@@ -61,3 +69,19 @@ AS
             WHERE  projectId = @projectId
         END
   END
+
+
+
+
+  UPDATE projects
+    SET isComplete = 0
+    WHERE projectId = '20'
+
+  SELECT *
+    FROM assignedProjects
+
+  SELECT *
+    FROM completedProjects
+    
+  SELECT *
+    FROM projects

@@ -1,5 +1,6 @@
 .App {
-    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .App-header {
@@ -9,9 +10,17 @@
     align-items: center;
     justify-content: space-around;
     color: white;
+    margin: 0;
 }
 
-.brand>img {
+#root {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.brand img {
     width: 50px;
 }
 
@@ -54,7 +63,7 @@
 }
 
 .index {
-    margin: 10px auto;
+    margin: 150px auto;
     max-width: 900px;
     padding: 20px;
     display: flex;
@@ -74,4 +83,55 @@
 .index-text>h4 {
     margin: 0;
     padding: 0;
+}
+
+.Project {
+    text-align: left;
+    padding: 10px 50px;
+}
+
+.Project>h2 {
+    padding: 0;
+    width: fit-content;
+}
+
+.Tasks {
+    display: flex;
+    margin: 0 auto;
+    /* align-items: center; */
+    justify-content: space-around;
+    padding: 0 50px;
+    max-height: 50vh;
+    overflow: visible;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px -2px #282c34;
+}
+
+.Task {
+    padding: 0 20px;
+    border-left: 2px saddlebrown solid;
+    text-align: left;
+}
+
+.Category {
+    padding: 0;
+}
+
+.Category>h2 {
+    padding: 5px 0;
+    margin: 10px 0;
+    font-weight: 400;
+    position: sticky;
+    top: 0;
+    background-color: #505153;
+}
+
+@media (max-width:768px) {
+    .index {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .Tasks {
+        flex-direction: column;
+    }
 }

@@ -3,14 +3,17 @@ const {
     getAllProjects,
     assignProject,
     completeProject,
-    unassignProject
+    unassignProject,
+    createProject,
+    getUnassigned
 } = require('../controllers/projectsControllers');
 
-projectRoutes.post('/projects/create', )
+projectRoutes.post('/create', createProject);
 projectRoutes.get('/projects', getAllProjects);
-projectRoutes.post('projects/assign', assignProject);
-projectRoutes.post('projects/unassign', unassignProject);
-projectRoutes.post('projects/complete', completeProject)
+projectRoutes.get('/unassigned', getUnassigned)
+projectRoutes.post('/assign', assignProject);
+projectRoutes.post('/unassign', unassignProject);
+projectRoutes.post('/complete', completeProject)
 
 
 

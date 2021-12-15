@@ -2,6 +2,7 @@ import React from 'react'
 import home from '../images/home.png'
 
 const Home = () => {
+    
     return (
         <div className="index">
             <img src={home} alt="" />

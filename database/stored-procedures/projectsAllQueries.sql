@@ -3,9 +3,9 @@ GO
 
 
 CREATE OR ALTER PROCEDURE projectsAssigning
-                    (@projectId VARCHAR(250),
+                    (@projectId VARCHAR(250) = '',
                     @user_id VARCHAR(50) = '',
-                    @statementType VARCHAR(50)
+                    @statementType VARCHAR(20)
                     )
     AS
     BEGIN 
@@ -29,12 +29,12 @@ CREATE OR ALTER PROCEDURE projectsAssigning
                 WHERE user_id = @user_id
             END 
 
-        IF @statementType = 'delete'
+        IF @statementType = 'complete'
             BEGIN
                 UPDATE projects
-                    SET isCompleted = 1;
+                    SET isComplete = 1
                     WHERE projectId = @projectId
-                    
+
                 INSERT INTO completedProjects
                     SELECT *
                         FROM assignedProjects
@@ -42,7 +42,16 @@ CREATE OR ALTER PROCEDURE projectsAssigning
 
                 DELETE assignedProjects
                 WHERE projectId = @projectId
+                
+               
+                        
             END
     END
 
-EXEC projectsAssigning 20, 2, 'unassign'
+EXEC projectsAssigning 20, @statementType = 'complete'
+
+select *
+    from completedProjects
+
+
+    

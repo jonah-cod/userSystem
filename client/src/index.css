@@ -8,3 +8,31 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.renderHere {
+    margin: 0;
+}
+
+.signup {
+    background-color: #282c34;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(+50px);
+}
+
+.signup input {
+    margin: 10px auto;
+    display: block;
+    padding: 10px 50px;
+    outline: none;
+    border: 2px #202227 solid;
+    background-color: #2e323a;
+    border-radius: 5px;
+}
+
+.signup button {
+    margin: 10px auto;
+    padding: 5px 50px;
+}

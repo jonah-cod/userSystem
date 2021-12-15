@@ -64,6 +64,22 @@ CREATE TABLE assignedProjects
 )
 GO
 
+CREATE TABLE completedProjects 
+(
+    projectId VARCHAR(250) FOREIGN KEY 
+    REFERENCES projects (projectId)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+
+    user_id VARCHAR(250) UNIQUE FOREIGN KEY 
+    REFERENCES users (id)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+)
+GO
+
+
+
 -- testing queries
 
 -- INSERT INTO assignedProjects 
@@ -79,14 +95,16 @@ GO
 
 
 
--- SELECT *
--- FROM users
+SELECT *
+FROM users
 
 --  SELECT *
 --     from projects
 
---  SELECT *
---     from assignedProjects
+ SELECT *
+    from assignedProjects
+SELECT *
+from completedProjects
 
 
 CREATE TABLE tasks 
@@ -131,6 +149,6 @@ GO
 --     FROM users
 --     WHERE isDeleted = 0;
 
--- DELETE from users
--- WHERE id = 'bhjhbhgs';
+DELETE from users
+WHERE id = 1;
 

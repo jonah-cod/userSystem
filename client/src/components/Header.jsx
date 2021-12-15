@@ -1,20 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import brand from '../images/projects-logo.png'
 import user from '../images/user.jpg'
 
 const Header = () => {
     let loggedin = true;
     return (
-        <>
+        <div className = "App-header">
             <div className="brand">
-                <img src={brand} alt="" />
+                <NavLink to='/'>
+                    <img src={brand} alt="" />
+                </NavLink>
+                
             </div>
             <div className="navs">
-                <Link to='' className='nav'>Projects</Link>
-                <Link to='' className='nav'>Tasks</Link>
-                {loggedin? <Link to='' className='nav'>Sign Out</Link> 
-                : <Link to='' className='nav'>Sign in</Link>}
+                <NavLink to='/projects' className='nav'>Projects</NavLink>
+                <NavLink to='/tasks' className='nav'>Tasks</NavLink>
+                {loggedin? <NavLink to='' className='nav'>Sign Out</NavLink> 
+                : <NavLink to='' className='nav'>Sign in</NavLink>}
                 
                 
                 <div className="account">
@@ -24,7 +27,7 @@ const Header = () => {
                 
             </div>
             
-        </>
+        </div>
     )
 }
 
