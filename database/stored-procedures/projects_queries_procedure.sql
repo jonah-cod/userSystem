@@ -52,6 +52,7 @@ AS
             WHERE t2.projectId IS NULL
         END
 
+      
       IF @StatementType = 'Update'
         BEGIN
             UPDATE projects

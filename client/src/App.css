@@ -21,7 +21,7 @@
 }
 
 .brand img {
-    width: 50px;
+    width: 30px;
 }
 
 .navs {
@@ -63,7 +63,7 @@
 }
 
 .index {
-    margin: 150px auto;
+    margin: 100px auto;
     max-width: 900px;
     padding: 20px;
     display: flex;
@@ -87,7 +87,7 @@
 
 .Project {
     text-align: left;
-    padding: 10px 50px;
+    padding: 10px 60px;
 }
 
 .Project>h2 {
@@ -95,35 +95,74 @@
     width: fit-content;
 }
 
-.Tasks {
-    display: flex;
-    margin: 0 auto;
-    /* align-items: center; */
-    justify-content: space-around;
-    padding: 0 50px;
-    max-height: 50vh;
-    overflow: visible;
-    overflow-y: auto;
-    box-shadow: 0 2px 5px -2px #282c34;
-}
-
-.Task {
-    padding: 0 20px;
-    border-left: 2px saddlebrown solid;
-    text-align: left;
-}
-
 .Category {
     padding: 0;
 }
 
-.Category>h2 {
+.Tasks {
+    padding: 0 50px;
+    max-width: 1024px;
+}
+
+.Tasks>h2 {
     padding: 5px 0;
-    margin: 10px 0;
-    font-weight: 400;
+    font-weight: 500;
     position: sticky;
     top: 0;
-    background-color: #505153;
+}
+
+.Task {
+    text-align: center;
+    padding: 0 10px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-areas: "task-title task-title img task-status timeline";
+    background-color: #15b0ab;
+}
+
+.task-title {
+    text-align: left;
+    grid-area: task-title;
+    background-color: rgb(207, 206, 206);
+    margin: 0;
+    height: 100%;
+}
+
+.img {
+    grid-area: img;
+    background-color: rgb(207, 206, 206);
+    margin: 0 5px;
+    height: 100%;
+}
+
+.img>h4 {
+    background-color: palevioletred;
+    width: 30px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.task-status {
+    grid-area: task-status;
+    background-color: rgb(207, 206, 206);
+    margin: 0 5px 0 0;
+    height: 100%;
+}
+
+.timeline {
+    grid-area: timeline;
+    background-color: rgb(207, 206, 206);
+    margin: 0;
+    height: 100%;
+}
+
+.timeline>p {
+    background-color: steelblue;
+    border-radius: 10px;
+    margin: 20px auto;
 }
 
 @media (max-width:768px) {

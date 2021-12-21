@@ -45,13 +45,32 @@ CREATE OR ALTER PROCEDURE projectsAssigning
                 
                
                         
-            END
+        END
+
+        IF @statementType = 'projecttasks'
+        BEGIN
+          SELECT *
+            FROM projects p
+              LEFT JOIN assignedProjects ap ON ap.projectId = p.projectId
+              INNER JOIN tasks t ON ap.projectId = t.FK_projectId
+              WHERE ap.user_id = @user_id
+              
+        END
+
     END
 
-EXEC projectsAssigning 20, @statementType = 'complete'
+EXEC projectsAssigning @user_id = 2, @statementType = 'projecttasks'
 
 select *
     from completedProjects
 
-
-    
+INSERT INTO assignedProjects
+            VALUES(20, 2)
+    -- (taskid,
+    -- FK_projectId,
+    -- assignedTo)
+    -- VALUES(
+    --     100,
+    --     20,
+    --     2
+    -- )

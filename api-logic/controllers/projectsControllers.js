@@ -47,10 +47,10 @@ module.exports = {
                     .execute('projectsallinsertupdatedelete')
                     .then((results) => {
                         let projects = results.recordset
-                        console.log(projects);
+
                         if (projects) {
                             res.json(projects)
-                            console.log(projects)
+                            console.log('Data has been requested & send to client')
                         }
 
                     })
@@ -145,5 +145,42 @@ module.exports = {
 
         }
 
+    },
+
+    getprojectAndTasks: async(req, res) => {
+        let { id } = req.query;
+
+        await mssql.connect(config).then(pool => {
+            if (pool.connected) {
+                pool.request()
+                    .input('user_id', mssql.VarChar(250), id)
+                    .input('statementType', mssql.VarChar(20), 'projecttasks')
+                    .execute('projectsAssigning')
+                    .then(result => {
+
+                        let recordse = result.recordset;
+                        let { projectId, title, p_description, isComplete, startDate, } = recordse[0];
+                        let data = {
+                            details: {
+                                projectId: projectId[0],
+                                title,
+                                p_description,
+                                isComplete,
+                                startDate
+                            },
+                            tasks: []
+                        }
+
+                        recordse.map(record => {
+                            let { user_Id, taskId, task_title, task_status } = record
+                            let task = { user_Id, taskId, task_title, task_status }
+                            data.tasks.push(task)
+                        })
+                        res.json(data)
+
+                    })
+
+            }
+        })
     }
 }

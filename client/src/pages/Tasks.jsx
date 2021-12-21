@@ -1,14 +1,15 @@
 import React from 'react'
-import Category from '../components/Category'
+import Task from '../components/Task'
 
 const Tasks = () => {
-    let categories = ['unassigned', 'ongoing', 'pending', 'completed']
+    
     return (
         <div className='Tasks'>
-            {categories.map((category, index)=>(<Category category={category} key={index}/>))}
+            <h2>Tasks</h2>
+            <Task/>
             
         </div>
     )
 }
-
+  
 export default Tasks

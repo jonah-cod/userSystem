@@ -22,16 +22,22 @@ module.exports = {
     login: async(req, res) => {
         let { email, password } = req.body;
         let thisUser = await getMeUser(email);
-        let { id, full_name, addres, user_role } = thisUser;
-        let user = { id, full_name, address: addres, user_role };
-        let authed = await verifypass({ pass: password, enpass: thisUser.pass }).then((result, err) => {
-            if (result) {
-                return (genToken(user, 'new'));
-            } else {
-                console.log(err);
-            }
-        });
-        res.json(authed);
+
+        if (thisUser) {
+            let { id, full_name, addres, user_role } = thisUser;
+            let user = { id, full_name, address: addres, user_role };
+            let authed = await verifypass({ pass: password, enpass: thisUser.pass }).then((result) => {
+                if (result) {
+                    return (genToken(user, 'new'));
+                } else {
+                    res.json({ message: 'wrong password' })
+                }
+            });
+            res.json(authed);
+        } else {
+            res.json({ message: 'no user found' })
+        }
+
 
     },
 
@@ -62,13 +68,17 @@ module.exports = {
                         .input('pass', mssql.VarChar(250), password)
                         .input('StatementType', mssql.VarChar(50), 'insert')
                         .execute('usersallinsertupdatedelete')
-                        .then(() => {
+                        .then((data) => {
+                            if (data.rowsAffected) {
+                                let newuser = { id, full_name, address, user_role: 'user' };
+                                let type = 'new';
+                                let { user, token, refresh } = genToken(newuser, type);
 
-                            let newuser = { id, full_name, address, user_role: 'user' };
-                            let type = 'new';
-                            let { user, token, refresh } = genToken(newuser, type);
+                                res.json({ user, token: token, refresh: refresh, message: 'success' });
+                            } else {
+                                res.json({ message: 'failed' })
+                            }
 
-                            res.send(`user saved ${user} token: ${token} refresh: ${refresh}`);
                         });
 
 
@@ -76,7 +86,8 @@ module.exports = {
             });
 
         } catch (error) {
-            console.log(error.message);
+            res.json({ error: error.message.split(' ')[0] })
+            console.log(error.message.split(' ')[0]);
         }
 
     },
