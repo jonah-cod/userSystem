@@ -149,6 +149,9 @@ GO
 --     FROM users
 --     WHERE isDeleted = 0;
 
-DELETE from users
-WHERE id = 1;
+DELETE  projects 
+where projectId = 'fd12affb-10dd-4541-bec3-a32ee84bfb2e'
+
+SELECT *
+    from projects
 

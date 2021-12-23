@@ -34,7 +34,7 @@ AS
         BEGIN
             SELECT *
             FROM   projects
-            WHERE isDEleted = 0
+            WHERE isDEleted = 0 AND isComplete = 0
         END
 
         IF @StatementType = 'SelectOne'
@@ -85,4 +85,4 @@ AS
     FROM completedProjects
     
   SELECT *
-    FROM projects
+    FROM tasks

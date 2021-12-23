@@ -8,31 +8,17 @@ const TaskProject = ({task}) => {
         status.style.visibility = 'visible'
     }
     
-    const hideStatus = (e)=>{
-        const btn = e.Target;
-        console.log(btn)
-    btn.style.visibility = 'hidden';
-    }
-        // let status = document.getElementById(id)
-        // if (status) {
-        //     status.addEventListener('mouseout', (e)=>{
-        //     if (!status.contains(e.relatedTarget)) {
-        //         status.style.visibility = 'hidden'
-        //     }
-        // })
-        // }
-              
+   
     
     
     return (
-        <div className={`TaskProject ${task.status}`} data-tip={task.title} data-place="right"  data-effect="solid">
-            <Link to={`/projects/:${task.id}`} ><h4>{task.title}</h4></Link>
-            <small >{task.status}</small>
+        <div className={`TaskProject ${task.task_status}`} data-tip={task.full_name || 'not assigned'} data-place="right"  data-effect="solid">
+            <Link to={`/projects/:${task.taskId}`} ><h4>{task.task_title}</h4></Link>
+            <small >{task.task_status}</small>
             <span>start date</span>
             <span>Due date</span>
-            <i class={`fas fa-ellipsis-h icon`} onClick={()=>{showStatus(task.id)}}></i>
-            <Link to={ `/projects/:${task.id}` } id= {`${task.id}`} className='viewStatus' 
-            onMouseOver={hideStatus}> View this task</Link>
+            <i class={`fas fa-ellipsis-h icon`} onClick={()=>{showStatus(task.taskId)}}></i>
+            <Link to={ `/projects/:${task.taskId}` } id= {`${task.taskId}`} className='viewStatus' > View this task</Link>
         </div>
     )
 }

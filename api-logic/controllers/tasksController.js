@@ -48,9 +48,9 @@ module.exports = {
             task_title,
             startDate,
             endDate,
-            task_status,
             FK_projectId
         } = req.body
+        console.log(req.body);
         try {
             await mssql.connect(config).then(pool => {
                 if (pool.connected) {
@@ -59,7 +59,6 @@ module.exports = {
                         .input('task_title', mssql.VarChar(50), task_title)
                         .input('startDate', mssql.Date, startDate)
                         .input('endDate', mssql.Date, endDate)
-                        .input('task_status', mssql.VarChar(50), task_status)
                         .input('FK_projectId', mssql.VarChar(250), FK_projectId)
                         .input('statementType', mssql.VarChar(50), 'insert')
                         .execute('tasksSP')

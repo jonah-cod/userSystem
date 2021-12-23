@@ -11,10 +11,13 @@ code {
 
 .renderHere {
     margin: 0;
+    display: flex;
 }
 
 .signin,
-.signup {
+.signup,
+.Projects,
+.TasksCreate {
     background-color: #282c34;
     width: 100%;
     display: flex;
@@ -25,40 +28,93 @@ code {
     height: 85vh;
 }
 
+.Projects,
+.TasksCreate {
+    background-color: white;
+    color: #202227;
+    position: relative;
+}
+
+.TasksCreate form,
 .signin form,
-.signup form {
+.signup form,
+.Projects form {
     display: flex;
     flex-direction: column;
 }
 
+.message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: green;
+    padding: 20px 50px;
+    box-shadow: 1px 2px 5px 0px green;
+    border-radius: 10px;
+    visibility: hidden;
+    position: absolute;
+    left: 32%;
+    top: 35%;
+    z-index: 100;
+}
+
+.message-active {
+    visibility: visible;
+}
+
+.TasksCreate input,
 .signin input,
-.signup input {
+.signup input,
+.Projects input,
+textarea,
+select {
     margin: 10px auto;
     display: block;
-    padding: 10px 50px 10px 10px;
+    padding: 10px;
     outline: none;
     border: 2px #202227 solid;
     background-color: #2e323a;
+    color: white;
     border-radius: 5px;
-    width: 220px;
+    width: 250px;
+}
+
+select {
+    width: 275px;
+}
+
+.Projects input,
+.Projects textarea,
+.TasksCreate input,
+select {
+    background-color: white;
+    color: #202227;
+    font-family: inherit;
 }
 
 .signin button,
-.signup button {
+.signup button,
+.Projects button,
+.TasksCreate button {
     text-align: center;
     margin: 10px auto;
     padding: 5px 50px;
     color: white;
+    opacity: .5;
     font-weight: 600;
+    font-size: 1.2rem;
     background-color: #2e323a;
     border: 0;
     border-radius: 3px;
 }
 
 .signin button:hover,
-.signup button:hover {
+.signup button:hover,
+.Projects button:hover {
     background-color: #202227;
-    transition: all .2s ease-in;
+    transition: all .3s ease-in;
+    opacity: .8;
     cursor: pointer;
 }
 
@@ -144,4 +200,5 @@ code {
 .link {
     text-decoration: none;
     color: #15b0ab;
+    margin: 20px;
 }

@@ -53,6 +53,7 @@ CREATE OR ALTER PROCEDURE projectsAssigning
             FROM projects p
               LEFT JOIN assignedProjects ap ON ap.projectId = p.projectId
               INNER JOIN tasks t ON ap.projectId = t.FK_projectId
+              INNER JOIN users u ON ap.user_id = u.id
               WHERE ap.user_id = @user_id
               
         END

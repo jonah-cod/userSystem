@@ -27,7 +27,7 @@ const Signin = () => {
                 seterror('wrong email or password!')
             }else if(message === 'no user found'){
                 seterror('account doesn\'t exist!')
-                navigate('/signup')
+                
             }
         })
 
@@ -46,7 +46,7 @@ const Signin = () => {
                     setpassword(e.target.value)
                 }}/>
                 
-                <Button text='sign in'/>
+                <Button text='sign in' />
                 
             </form>
             <Link to={'/signup'} className='link'>create account instead!</Link>

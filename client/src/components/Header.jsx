@@ -16,7 +16,9 @@ const Header = () => {
     const {user} = useSelector(state => state)
     console.log(user);
     const handleLogout = ()=>{
+        localStorage.clear();
         dispatch(logout())
+        dispatch(loginSuccess(thisuse))
     }
     return (
         <div className = "App-header">
@@ -34,7 +36,7 @@ const Header = () => {
                 <NavLink style={({isActive})=>({
                     borderBottom: isActive ? "#15b0ab solid 2px": '',
                     opacity: isActive ? 1 : ""
-                })} to='/projects' className='nav'>Projects</NavLink>
+                })} to='/project' className='nav'>Projects</NavLink>
                 
                 <NavLink style={({isActive})=>({
                     borderBottom: isActive ? "#15b0ab solid 2px": '',

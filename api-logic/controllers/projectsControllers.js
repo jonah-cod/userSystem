@@ -159,24 +159,31 @@ module.exports = {
                     .then(result => {
 
                         let recordse = result.recordset;
-                        let { projectId, title, p_description, isComplete, startDate, } = recordse[0];
-                        let data = {
-                            details: {
-                                projectId: projectId[0],
-                                title,
-                                p_description,
-                                isComplete,
-                                startDate
-                            },
-                            tasks: []
-                        }
+                        console.log(recordse);
+                        if (recordse.length) {
 
-                        recordse.map(record => {
-                            let { user_Id, taskId, task_title, task_status } = record
-                            let task = { user_Id, taskId, task_title, task_status }
-                            data.tasks.push(task)
-                        })
-                        res.json(data)
+                            let { projectId, title, p_description, isComplete, startDate, endDate } = recordse[0];
+                            let data = {
+                                details: {
+                                    projectId: projectId[0],
+                                    title,
+                                    p_description,
+                                    isComplete,
+                                    startDate,
+                                    endDate,
+                                },
+                                tasks: []
+                            }
+
+                            recordse.map(record => {
+                                let { assignedTo, full_name, taskId, task_title, task_status } = record
+                                let task = { assignedTo, full_name, taskId, task_title, task_status }
+                                data.tasks.push(task)
+                            })
+                            res.json(data)
+                        } else {
+                            res.send('no data')
+                        }
 
                     })
 

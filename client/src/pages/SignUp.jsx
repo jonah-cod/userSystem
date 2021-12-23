@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../redux/actions/authAction';
 import Button from '../components/Button'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -12,6 +14,7 @@ const SignUp = () => {
     const [cpassword, setcpassword] = useState();
     const [error, seterror] = useState();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSignin = async(e)=>{
         e.preventDefault();
@@ -23,6 +26,7 @@ const SignUp = () => {
                 let {message, refresh, token, user} = Response.data;
                 if (message === 'success') {
                     let thisuser = {user, refresh, token}
+                    dispatch(loginSuccess(Response.data));
                     localStorage.setItem('thisuser', JSON.stringify(thisuser));
                     navigate('/')
 

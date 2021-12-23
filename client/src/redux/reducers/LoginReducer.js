@@ -17,7 +17,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
 
         case LOG_OUT:
             return (() => {
-                    localStorage.setItem('thisuser', JSON.stringify({}))
+
                     return {
                         ...state,
                         user: {}

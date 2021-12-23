@@ -11,6 +11,9 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import { Provider } from 'react-redux';
 import {store} from './redux/store'
+import CreateProject from './components/createProject';
+import CreateTask from './components/CreateTask';
+import Projects from './components/Projects';
 
 
 ReactDOM.render(
@@ -19,8 +22,13 @@ ReactDOM.render(
       <Provider store={store}>
       <Routes>
         <Route path='/' element={<App />}>
-          { <Route index element={<Home/>}/> }
-          <Route path='projects' element={<Project/>}/>
+          <Route index element={<Home/>}/> 
+          <Route path='project' element={<Project/>}>
+            <Route path=':id' element={<p>hi</p>}/>
+          </Route>
+          <Route path='createproject' element={<CreateProject/>}/>
+          <Route path='createtask' element={<CreateTask/>}/>
+          <Route path='projects' element={<Projects/>}/>
           <Route path='tasks' element={<Tasks/>}/>
           <Route path='signup' element={<SignUp/>}/>
           <Route path='signin' element={<SignIn/>}/> 
