@@ -1,24 +1,21 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import brand from '../images/projects-logo.png'
 import userImg from '../images/user.jpg'
-import { logout, loginSuccess } from '../redux/actions/authAction'
+import { logout } from '../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 
 
 const Header = () => {
     const dispatch = useDispatch();
     
-    let thisuse = JSON.parse(localStorage.getItem('thisuser'))
-    useEffect(() => {
-        dispatch(loginSuccess(thisuse))
-    }, [])
+    
     const {user} = useSelector(state => state)
-    console.log(user);
+    
     const handleLogout = ()=>{
         localStorage.clear();
         dispatch(logout())
-        dispatch(loginSuccess(thisuse))
+        
     }
     return (
         <div className = "App-header">

@@ -23,17 +23,42 @@ module.exports = {
     },
 
     getTasksForproject: async(req, res) => {
-        let { projectId } = req.body
+        let { id } = req.query
+        console.log(id);
         try {
             await mssql.connect(config).then(pool => {
                 if (pool.connected) {
                     pool.request()
-                        .input('FK_projectId', mssql.VarChar(250), projectId)
+                        .input('FK_projectId', mssql.VarChar(250), id)
                         .input('statementType', mssql.VarChar(50), 'selectOnProject')
                         .execute('tasksSP').then(result => {
-                            let data = result.recordset;
-                            if (data) return res.json(data)
-                            res.send('no records')
+                            let recordse = result.recordset;
+
+                            if (recordse.length) {
+
+                                let { projectId, title, p_description, isComplete, startDate, endDate } = recordse[0];
+                                let data = {
+                                    details: {
+                                        projectId: projectId[0],
+                                        title,
+                                        p_description,
+                                        isComplete,
+                                        startDate: startDate[0],
+                                        endDate: endDate[0],
+                                    },
+                                    tasks: []
+                                }
+
+                                recordse.map(record => {
+                                    let { assignedTo, full_name, taskId, task_title, task_status, startDate, endDate } = record
+                                    let task = { assignedTo, full_name, taskId, task_title, task_status, startDate: startDate[0], endDate: endDate[0] }
+                                    data.tasks.push(task)
+                                })
+                                res.json(data)
+                                console.log(data.tasks[0].startDate);
+                            } else {
+                                res.send('no data')
+                            }
                         })
                 }
             })

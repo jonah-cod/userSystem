@@ -50,14 +50,17 @@ BEGIN
         IF @statementType = 'selectOnProject'
             BEGIN
                 SELECT *
-                    FROM tasks
+                    FROM projects p 
+                    LEFT JOIN tasks t ON p.projectId = t.FK_projectId
+                    
                     WHERE FK_projectId = @FK_projectId
             END
 
         IF @statementType = 'assign'
             BEGIN
                 UPDATE tasks
-                    SET assignedTo = @assignedTo
+                    SET assignedTo = @assignedTo,
+                        task_status = 'ongoing'
                     WHERE taskId = @taskId
             END
 
@@ -89,7 +92,8 @@ EXEC dbo.tasksSP @taskId = 'qwerty123', @statementType = 'unassign';
 
 
 SELECT *
-FROM assignedProjects
+FROM projects
+
 
 SELECT *
 FROM projects t1

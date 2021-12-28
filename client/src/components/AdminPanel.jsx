@@ -17,12 +17,12 @@ const AdminPanel = () => {
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>all projects</NavLink>
-                <NavLink to =''
+                <NavLink to ='/projects'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>non-assigned</NavLink>
-                <NavLink to =''
+                <NavLink to ='/projects'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
@@ -40,7 +40,7 @@ const AdminPanel = () => {
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>create new</NavLink>
-                <NavLink to =''
+                <NavLink to ='alltasks'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""

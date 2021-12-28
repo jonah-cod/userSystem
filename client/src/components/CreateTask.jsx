@@ -56,7 +56,7 @@ const CreateTask = () => {
             </div>
             <h2>create task</h2>
             <form action="" onSubmit={handlesubmit} style={ ({opacity:message? .1: .7})}>
-                <select name="" id="" selected='select project' onChange={e=>setprojectId(e.target.value)}>
+                <select name="" id="" selected='select project' onChange={e=>setprojectId(e.target.value)} required>
                     <option value="" selected>select project</option>
                     {data? (data.map(dat=>(<option value={dat.projectId} key={dat.projectId}>{dat.title}</option>))): <option value="">no ongoing projects</option>}
                 </select>
@@ -64,17 +64,17 @@ const CreateTask = () => {
                 <input type="text" 
                 value={task_title} 
                 onChange={(e)=>settask_title(e.target.value)}
-                placeholder='task title'/>
+                placeholder='task title' required/>
                 
                 <input type="date" 
                         value={startDate}
                         onChange={e=>setstartDate(e.target.value)}
-                        placeholder='start date'/>
+                        placeholder='start date' required/>
 
                 <input type="date" 
                         value={endDate}
                         onChange={e=>setendDate(e.target.value)}
-                        placeholder='end date'/>
+                        placeholder='end date' required/>
                 <Button text='submit'/>
             </form>
         </div>

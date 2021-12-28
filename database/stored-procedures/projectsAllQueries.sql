@@ -60,10 +60,10 @@ CREATE OR ALTER PROCEDURE projectsAssigning
 
     END
 
-EXEC projectsAssigning @user_id = 2, @statementType = 'projecttasks'
+EXEC projectsAssigning @user_id = 'jonathan@gmail.com', @projectId = '116a55b7-97b0-42d3-85b4-6b1b2c68995c',@statementType = 'projecttasks'
 
 select *
-    from completedProjects
+    from assignedProjects
 
 INSERT INTO assignedProjects
             VALUES(20, 2)

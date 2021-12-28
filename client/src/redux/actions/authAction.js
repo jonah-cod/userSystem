@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOG_OUT, REFRESH } from '../types'
+import { LOGIN_SUCCESS, LOG_OUT, PROJECTSUCCESS, REFRESH } from '../types'
 
 export const loginSuccess = (data) => {
     return ({
@@ -16,5 +16,11 @@ export const logout = () => {
 export const updateuser = () => {
     return ({
         type: REFRESH
+    })
+}
+export const projectdata = (data) => {
+    return ({
+        type: PROJECTSUCCESS,
+        payload: data
     })
 }

@@ -14,6 +14,8 @@ import {store} from './redux/store'
 import CreateProject from './components/createProject';
 import CreateTask from './components/CreateTask';
 import Projects from './components/Projects';
+import OneProject from './components/oneProject'
+import AllTasks from './components/allTasks';
 
 
 ReactDOM.render(
@@ -26,9 +28,11 @@ ReactDOM.render(
           <Route path='project' element={<Project/>}>
             <Route path=':id' element={<p>hi</p>}/>
           </Route>
+          <Route path='/projects/oneproject/:projectId' element={<OneProject/>}/>
           <Route path='createproject' element={<CreateProject/>}/>
           <Route path='createtask' element={<CreateTask/>}/>
-          <Route path='projects' element={<Projects/>}/>
+          <Route path='projects/' element={<Projects/>}/>
+          <Route path='alltasks' element={<AllTasks/>}/>
           <Route path='tasks' element={<Tasks/>}/>
           <Route path='signup' element={<SignUp/>}/>
           <Route path='signin' element={<SignIn/>}/> 

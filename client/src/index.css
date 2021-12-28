@@ -131,7 +131,7 @@ select {
     background-color: #4d4d4e;
     padding: 10px 20px;
     margin: 10px;
-    max-width: 200px;
+    max-width: 350px;
     border-radius: 2px;
     color: white;
     position: relative;
@@ -201,4 +201,75 @@ select {
     text-decoration: none;
     color: #15b0ab;
     margin: 20px;
+}
+
+.all-projects {
+    padding: 10px 50px;
+    width: 100%;
+}
+
+.projects-container {
+    padding: 20px;
+}
+
+.projects-container th {
+    background-color: #15b0ab;
+    padding: 10px;
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+td {
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+tr {
+    border: #15b0ab 2px solid;
+    border-radius: 5px;
+}
+
+.complete {
+    text-align: center;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head a {
+    color: green;
+    font-size: 1.2em;
+    border: green 2px solid;
+    padding: 3px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.head a:hover {
+    background-color: green;
+    color: white;
+    transition: all .3s ease-in;
+}
+
+.head i {
+    margin: 5px 10px;
+}
+
+.alltasks {
+    padding: 20px 50px;
+    width: 100%;
 }

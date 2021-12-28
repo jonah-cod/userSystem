@@ -5,29 +5,40 @@ import axios from 'axios'
 import TaskProject from './TaskProject';
 
 import ReactTooltip from 'react-tooltip';
+import { useDispatch } from 'react-redux'
+import { loginSuccess } from '../redux/actions/authAction';
+import { handledate } from '../helpers/dateHandler';
 
 
 const Project = () => {
-    const user = useSelector(state => state.user)
+    
     const [data, setdata] = useState()
+    const dispatch = useDispatch()
+    let thisuse = JSON.parse(localStorage.getItem('thisuser'))
+    useEffect(() => {
+        dispatch(loginSuccess(thisuse))
+        
+    }, [])
+    const user = useSelector(state => state.user)
+    let {id} = user.user
+    
+    
     useEffect(() => {
         setTimeout(async() => {
             if (user) {
                 await axios({
                 url: `http://localhost:3002/projects/projecttasks`,
                 method: 'GET',
-                params: { id:user.user.id },
-                
-                
+                params: { id: id }
             }).then(( response)=>{
                 console.log(response.data);
                 if (response.data === 'no data') {
-                    return(<h2>No data found</h2>)
+                    <h2>No data found</h2>
                 }
                 setdata(response.data)
 
             }).catch(Error=>{
-                console.log(Error.response.status);
+                console.log(Error);
             })
             }
             
@@ -42,10 +53,9 @@ const Project = () => {
             
            {data?
            <>
-           <h2 data-tip="header" data-place="right"  data-effect="solid">{data.details.title}</h2>
-            <ReactTooltip/>
-            <small >Start Date:{data.details.startDate}</small> <small>Due Date:{data.details.startDate}</small>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque dignissimos, recusandae nesciunt ipsa numquam ducimus cum blanditiis quis inventore ut hic repellat ex autem molestiae, commodi dolorum eum quaerat quam, corporis ipsum enim reprehenderit corrupti. Unde magni incidunt expedita minus culpa sequi eaque libero perspiciatis commodi, hic maiores fugit nisi!</p>
+           <h2>{data.details.title}</h2>
+            <small >Start Date:{handledate(data.details.startDate)}</small> <small>Due Date:{handledate(data.details.endDate)}</small>
+            <p style={({maxWidth: '550px'})}>{ data.details.p_description}</p>
 
             <div className="TasksOnProject">
                 <h4>Tasks</h4>

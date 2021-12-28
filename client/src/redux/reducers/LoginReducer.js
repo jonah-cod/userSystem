@@ -1,7 +1,8 @@
-import { LOGIN_SUCCESS, LOG_OUT } from '../types'
+import { LOGIN_SUCCESS, LOG_OUT, PROJECTSUCCESS } from '../types'
 
 const initialState = {
-    user: {}
+    user: {},
+    projects: {}
 }
 
 export const userReducer = (state = initialState, { type, payload }) => {
@@ -25,6 +26,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
                 }
 
             )
+
+        case PROJECTSUCCESS:
+            return ({
+                ...state,
+                projects: payload
+            })
 
         default:
             return state

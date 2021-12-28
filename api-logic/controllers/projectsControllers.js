@@ -104,7 +104,8 @@ module.exports = {
     },
 
     completeProject: async(req, res) => {
-        let { ProjectId } = req.body;
+        let { ProjectId } = req.query;
+        console.log(ProjectId);
         try {
             await mssql.connect(config).then(pool => {
                 if (pool.connected) {
@@ -113,7 +114,7 @@ module.exports = {
                         .input('statementType', mssql.VarChar(20), 'complete')
                         .execute('projectsAssigning')
                         .then(result => {
-                            if (result) {
+                            if (result.rowsAffected) {
                                 res.send('success')
                             }
                         })
@@ -149,6 +150,7 @@ module.exports = {
 
     getprojectAndTasks: async(req, res) => {
         let { id } = req.query;
+        console.log(id);
 
         await mssql.connect(config).then(pool => {
             if (pool.connected) {
@@ -159,7 +161,7 @@ module.exports = {
                     .then(result => {
 
                         let recordse = result.recordset;
-                        console.log(recordse);
+
                         if (recordse.length) {
 
                             let { projectId, title, p_description, isComplete, startDate, endDate } = recordse[0];
@@ -169,15 +171,15 @@ module.exports = {
                                     title,
                                     p_description,
                                     isComplete,
-                                    startDate,
-                                    endDate,
+                                    startDate: startDate[0],
+                                    endDate: endDate[0],
                                 },
                                 tasks: []
                             }
 
                             recordse.map(record => {
-                                let { assignedTo, full_name, taskId, task_title, task_status } = record
-                                let task = { assignedTo, full_name, taskId, task_title, task_status }
+                                let { assignedTo, full_name, taskId, task_title, task_status, startDate, endDate } = record
+                                let task = { assignedTo, full_name, taskId, task_title, task_status, startDate: startDate[0], endDate: endDate[0] }
                                 data.tasks.push(task)
                             })
                             res.json(data)
