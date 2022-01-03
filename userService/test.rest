@@ -38,5 +38,5 @@ POST http://localhost:3030/users
 Content-Type: application/json
 
 {
-    "id": "jonnig6@gmail.com"
+    "id": "jonathan@gmail.com"
 }

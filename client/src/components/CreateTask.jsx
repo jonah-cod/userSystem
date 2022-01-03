@@ -4,6 +4,7 @@ import axios from 'axios'
 import {v4} from 'uuid';
 import { useNavigate } from 'react-router-dom'
 import Button from './Button';
+import handledate2 from '../helpers/dateHandler'
 
 
     
@@ -11,8 +12,8 @@ const CreateTask = () => {
     const navigate = useNavigate()
     const [projectId, setprojectId] = useState()
     const [task_title, settask_title] = useState()
-    const [startDate, setstartDate] = useState()
-    const [endDate, setendDate] = useState()
+    let [startDate, setstartDate] = useState()
+    let [endDate, setendDate] = useState()
     const [data, setdata] = useState();
     const [message, setmessage] = useState(false);
     useEffect(() => {
@@ -29,12 +30,14 @@ const CreateTask = () => {
     let id = v4();
     const handlesubmit = async(e)=> {
         e.preventDefault()
+        console.log(startDate, endDate);
+        
             await axios.post('http://localhost:3002/tasks/create', 
                 {
                     FK_projectId: projectId,
                     taskId: id,
                     task_title,
-                    start_Date: startDate,
+                    startDate,
                     endDate: endDate,
                     }
             ).then(Response=>{
@@ -43,7 +46,7 @@ const CreateTask = () => {
                     setmessage(true) 
                     setTimeout(() => {
                         setmessage(false)
-                        navigate('/')
+                        navigate('/alltasks/all')
                     }, 2000);
                 }
             })

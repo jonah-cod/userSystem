@@ -22,6 +22,8 @@ const Signin = () => {
                 setemail('')
                 setpassword('')
                 navigate('/')
+                window.location.reload()
+                
                 localStorage.setItem('thisuser', JSON.stringify(Response.data))
             }else if (message === 'wrong password'){
                 seterror('wrong email or password!')

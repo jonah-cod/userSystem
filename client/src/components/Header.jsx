@@ -4,17 +4,26 @@ import brand from '../images/projects-logo.png'
 import userImg from '../images/user.jpg'
 import { logout } from '../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 
 const Header = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     
     const {user} = useSelector(state => state)
-    
+    const i = ()=>{
+        // if (!user) {
+        //     navigate('/signin');
+        // }
+    }
     const handleLogout = ()=>{
+        navigate('/');
         localStorage.clear();
+        window.location.reload();
         dispatch(logout())
+        
         
     }
     return (
@@ -33,7 +42,7 @@ const Header = () => {
                 <NavLink style={({isActive})=>({
                     borderBottom: isActive ? "#15b0ab solid 2px": '',
                     opacity: isActive ? 1 : ""
-                })} to='/project' className='nav'>Projects</NavLink>
+                })} to='/project' className='nav' >Projects</NavLink>
                 
                 <NavLink style={({isActive})=>({
                     borderBottom: isActive ? "#15b0ab solid 2px": '',

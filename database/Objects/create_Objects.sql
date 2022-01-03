@@ -16,6 +16,11 @@ CREATE TABLE users
 )
 GO
 
+ALTER TABLE users
+    ADD isSent BIT DEFAULT 0
+
+select * from users
+
 -- test data
 -- insert into users values(1, 'Jon','Address','admin','1234',0),
 --                         (2, 'Mary','Address','admin','1234',0),

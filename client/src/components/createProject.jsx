@@ -29,7 +29,7 @@ const CreateProject = () => {
                     setmessage(true) 
                     setTimeout(() => {
                         setmessage(false)
-                        navigate('/projects')
+                        navigate('/projects/all')
                     }, 2000);
                     
                     

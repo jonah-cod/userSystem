@@ -43,7 +43,8 @@ code {
     flex-direction: column;
 }
 
-.message {
+.message,
+#assign {
     display: flex;
     flex-direction: column;
     align-items: center;

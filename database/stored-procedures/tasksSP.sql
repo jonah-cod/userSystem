@@ -88,12 +88,16 @@ END
 
 EXEC dbo.tasksSP 'qwerty123', 'northern light', '10/12/2010', '12/20/2010', 'ongoing', 20, @statementType = 'insert';
 
-EXEC dbo.tasksSP @taskId = 'qwerty123', @statementType = 'unassign';
+EXEC dbo.tasksSP @taskId = '552675b9-70ff-46ea-aa77-636a0295e6b8', @assignedTo = 'jonathan@gmail.com',@statementType = 'assign';
 
 
 SELECT *
-FROM projects
+FROM users 
+WHERE projectId = '7edef6bc-9785-453e-96ae-db1c696013ab'
 
+DELETE tasks
+
+DELETE users where id <> 'joseph.ndegwa@thejitu.com' OR id <> 'jonathan.mwaniki@thejitu.com'
 
 SELECT *
 FROM projects t1

@@ -12,21 +12,21 @@ const AdminPanel = () => {
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>create new</NavLink>
-                <NavLink to ='/projects'
+                <NavLink to ='/projects/all'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>all projects</NavLink>
-                <NavLink to ='/projects'
+                <NavLink to ='/projects/unassigned'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>non-assigned</NavLink>
-                <NavLink to ='/projects'
+                {/* <NavLink to ='/projects'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
-                        })}>assigned</NavLink>
+                        })}>assigned</NavLink> */}
                 <NavLink to =''
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
@@ -40,22 +40,22 @@ const AdminPanel = () => {
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>create new</NavLink>
-                <NavLink to ='alltasks'
+                <NavLink to ='alltasks/all'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>all tasks</NavLink>
-                <NavLink to =''
+                <NavLink to ='alltasks/unassigned'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>non-assigned</NavLink>
-                <NavLink to =''
+                <NavLink to ='alltasks/assigned'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""
                         })}>assigned</NavLink>
-                <NavLink to =''
+                <NavLink to ='alltasks/completed'
                         style={({isActive})=>({
                             backgroundColor: isActive ? "#282c34": '',
                             opacity: isActive ? .7 : ""

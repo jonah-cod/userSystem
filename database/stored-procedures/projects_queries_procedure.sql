@@ -46,10 +46,10 @@ AS
 
       IF @statementType = 'selectUnassigned'
         BEGIN
-          SELECT *
+          SELECT t1.projectId, title, p_description, startDate, endDate
             FROM projects t1
             LEFT JOIN assignedProjects t2 ON t2.projectId = t1.projectId
-            WHERE t2.projectId IS NULL
+            WHERE t2.projectId IS NULL AND t1.isComplete = 0
         END
 
       
@@ -85,4 +85,10 @@ AS
     FROM completedProjects
     
   SELECT *
-    FROM tasks
+    FROM users
+
+  UPDATE users
+    set user_role = 'admin'
+    WHERE id = 'jonathan@gmail.com'
+  
+DELETE assignedProjects WHERE user_id = 'dancan.kipgetich@thejitu.com'

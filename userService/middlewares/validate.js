@@ -24,9 +24,17 @@ module.exports = {
 
     isHeanAdmin: async(req, res, next) => {
         let id = req.body.id;
+        console.log(id);
         let user = await getMeUser(id);
-        let role = user.user_role;
-        if (role === 'admin') { next() }
+
+        if (user) {
+            let role = user.user_role;
+            if (role === 'admin') { next() } else { return res.status(401).send('unauthorised') }
+        } else {
+            res.status(400).send('account doesn\'t exist')
+        }
+
+
     }
 
 }

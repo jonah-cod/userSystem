@@ -16,6 +16,10 @@ GET http://localhost:3002/projects/projects
 Content-Type: application/json
 
 ###
+GET http://localhost:3002/projects/unassigned
+Content-Type: application/json
+
+###
 
 POST http://localhost:3002/projects/assign
 Content-Type: application/json
@@ -53,3 +57,11 @@ Content-Type: application/json
 GET http://localhost:3002/projects/projecttasks
 ?id=2
 Content-Type: application/json
+
+###
+DELETE http://localhost:3002/projects/delete
+Content-Type: application/json
+
+{
+    "ProjectId": "7edef6bc-9785-453e-96ae-db1c696013ab"
+}

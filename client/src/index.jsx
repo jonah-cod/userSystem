@@ -31,8 +31,8 @@ ReactDOM.render(
           <Route path='/projects/oneproject/:projectId' element={<OneProject/>}/>
           <Route path='createproject' element={<CreateProject/>}/>
           <Route path='createtask' element={<CreateTask/>}/>
-          <Route path='projects/' element={<Projects/>}/>
-          <Route path='alltasks' element={<AllTasks/>}/>
+          <Route path='projects/:category' element={<Projects/>}/>
+          <Route path='alltasks/:status' element={<AllTasks/>}/>
           <Route path='tasks' element={<Tasks/>}/>
           <Route path='signup' element={<SignUp/>}/>
           <Route path='signin' element={<SignIn/>}/> 

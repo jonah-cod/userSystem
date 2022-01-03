@@ -6,7 +6,8 @@ const {
     unassignProject,
     createProject,
     getUnassigned,
-    getprojectAndTasks
+    getprojectAndTasks,
+    deleteproject
 } = require('../controllers/projectsControllers');
 
 projectRoutes.post('/create', createProject);
@@ -16,6 +17,7 @@ projectRoutes.get('/projecttasks', getprojectAndTasks)
 projectRoutes.post('/assign', assignProject);
 projectRoutes.post('/unassign', unassignProject);
 projectRoutes.post('/complete', completeProject)
+projectRoutes.post('/delete', deleteproject)
 
 
 

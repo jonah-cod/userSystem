@@ -79,13 +79,13 @@ module.exports = {
     },
 
     assignProject: async(req, res) => {
-        let { ProjectId, userId } = req.body;
+        let { projectId, userId } = req.body;
         try {
             await mssql.connect(config).then(pool => {
                 if (pool.connecting)(console.log('connecting to the database'))
                 if (pool.connected) {
                     pool.request()
-                        .input('ProjectId', mssql.VarChar(250), ProjectId)
+                        .input('ProjectId', mssql.VarChar(250), projectId)
                         .input('user_id', mssql.VarChar(50), userId)
                         .input('statementType', mssql.VarChar(20), 'insert')
                         .execute('projectsAssigning')
@@ -150,7 +150,7 @@ module.exports = {
 
     getprojectAndTasks: async(req, res) => {
         let { id } = req.query;
-        console.log(id);
+
 
         await mssql.connect(config).then(pool => {
             if (pool.connected) {
@@ -191,5 +191,23 @@ module.exports = {
 
             }
         })
+    },
+
+    deleteproject: async(req, res) => {
+        let { ProjectId } = req.body;
+        console.log(req.body);
+        try {
+            await mssql.connect(config).then(pool => {
+                if (pool.connect) {
+                    pool.request()
+                        .input('statementType', 'Delete')
+                        .input('projectId', ProjectId)
+                        .execute('projectsallinsertupdatedelete')
+                        .then(res => console.log(res))
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
