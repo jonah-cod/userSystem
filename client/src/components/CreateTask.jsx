@@ -72,12 +72,12 @@ const CreateTask = () => {
                 <input type="date" 
                         value={startDate}
                         onChange={e=>setstartDate(e.target.value)}
-                        placeholder='start date' required/>
+                        placeholder='start date' required min={new Date().toISOString().split('T')[0]}/>
 
                 <input type="date" 
                         value={endDate}
                         onChange={e=>setendDate(e.target.value)}
-                        placeholder='end date' required/>
+                        placeholder='end date' required min={new Date().toISOString().split('T')[0]}/>
                 <Button text='submit'/>
             </form>
         </div>
